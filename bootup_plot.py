@@ -42,21 +42,3 @@ def generate_barplot(basic_score,advance_score,overall=False,name=None,domains=[
     plt.show()
     return None
 
-
-def radial_plot(df2):
-    plt.figure(figsize=(10,10))
-    ax = plt.axes([0.025, 0.025, 0.95, 0.95], polar=True)
-    
-    N = df2.shape[1]
-    theta = np.arange(0.0, 2 * np.pi, 2 * np.pi / N)
-    radii = df2.mean()
-    bars = plt.bar(theta, radii, width=0.9, bottom=0.0)
-    
-    for r,bar in zip(radii, bars):
-        bar.set_facecolor(plt.cm.jet(r/10.))
-        bar.set_alpha(0.9)
-    
-    ax.set_xticklabels([])
-    ax.set_yticklabels([])
-    plt.show()
-    return None
