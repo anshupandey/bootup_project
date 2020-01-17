@@ -42,3 +42,52 @@ def generate_barplot(basic_score,advance_score,overall=False,name=None,domains=[
     plt.show()
     return None
 
+
+
+def disss(N):
+  out = np.ones(N).tolist()
+  out[0]=0
+  if N%2!=0:
+    for i in range(1,int((N+1)/2)):
+      out[i]=-1
+    return out
+  else:
+    for i in range(1,int(N/2)):
+      out[i]=-1
+    if N%2==0:
+      out[int(N/2)]=0
+    if N%4==0:
+      out[int(N/4)]=0
+      out[int(3*N/4)]=0
+  return out
+
+def generate_polarplot(df):
+    plt.style.use('ggplot')
+    plt.figure(figsize=(10,10))
+    ax = plt.axes([0.025, 0.025, 0.95, 0.95], polar=True)
+    N = df.shape[1]
+    theta = np.linspace(0.0, 2 * np.pi, N+1)[:-1]
+    radii = df.mean()
+    bars = plt.bar(theta, radii, width=6.28/N, bottom=0.0)
+    colors=['salmon','orangered','dodgerblue','royalblue','lawngreen','limegreen','gold','darkcyan']
+    for r,bar in zip(colors, bars):
+        bar.set_facecolor(r)
+        bar.set_alpha(0.99)
+
+    ax.set_xticklabels([])
+    ax.set_yticklabels([])
+    ax.set_axisbelow(False)
+    ax.xaxis.grid(lw=2)
+    ax.yaxis.grid(lw=2)
+    md = max(radii)
+    angle = 360/N
+    rot=[-90+(k*angle) for k in range(N)]
+    md = max(radii)+2
+    dist=disss(N)
+    texts = ["Basic Python \n Programming", "Advance Python \n Programming","Basic \n Data Science", "Advance \n Data Science","Basic \n Machine Learning", "Advance \n Machine Learning","Deep \n Learning","Natural Language \n Processing"]
+    fact = [0.45,0.45,0.55,0.55,0.5,0.5,0.45,0.45,0.55,0.55,0.5,0.5]
+    for bar,ang,text,loc,fac in zip(bars,rot,texts,dist,fact):
+      plt.gca().text(bar.get_x() + bar.get_width()/2, md+loc*(6.28/N), str(int(bar.get_height()))+"/30",ha='center', color='b', fontsize=22,rotation=ang)
+      plt.gca().text(bar.get_x() + bar.get_width()*fac, md+2+loc*(2*6.28/N), text,ha='center', color='black', fontsize=15,rotation=ang)
+
+    plt.show()
