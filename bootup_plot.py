@@ -9,6 +9,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+dictionary = {'basic_python': 'Basic Python \n Programming',
+ 'advance_python': 'Advance Python \n Programming',
+ 'basic_ds': 'Basic \n Data Science',
+ 'advance_ds': 'Advance \n Data Science',
+ 'basic_ml': 'Basic \n Machine Learning',
+ 'advance_ml': 'Advance \n Machine Learning',
+ 'deep_learning': 'Deep \n Learning',
+ 'natural_language_processing': 'Natural Language \n Processing',
+ 'big_data_analytics':"Big Data \n Analytics",
+ 'r_prog':"R Programming"}
+
+
+
 def generate_barplot(basic_score,advance_score,overall=False,name=None,domains=[]):
     plt.figure(figsize=(18,10))
     pos = np.arange(len(domains))
@@ -61,7 +74,7 @@ def disss(N):
       out[int(3*N/4)]=0
   return out
 
-def generate_polarplot(df):
+def generate_polarplot(df,dictionary=dictionary):
     plt.style.use('ggplot')
     plt.figure(figsize=(10,10))
     ax = plt.axes([0.025, 0.025, 0.95, 0.95], polar=True)
@@ -84,7 +97,7 @@ def generate_polarplot(df):
     rot=[-90+(k*angle) for k in range(N)]
     md = max(radii)+2
     dist=disss(N)
-    texts = ["Basic Python \n Programming", "Advance Python \n Programming","Basic \n Data Science", "Advance \n Data Science","Basic \n Machine Learning", "Advance \n Machine Learning","Deep \n Learning","Natural Language \n Processing"]
+    texts = [dictionary[val] for val in list(df.columns)]
     fact = [0.45,0.45,0.55,0.55,0.5,0.5,0.45,0.45,0.55,0.55,0.5,0.5]
     for bar,ang,text,loc,fac in zip(bars,rot,texts,dist,fact):
       plt.gca().text(bar.get_x() + bar.get_width()/2, md+loc*(6.28/N), str(int(bar.get_height()))+"/30",ha='center', color='b', fontsize=22,rotation=ang)
