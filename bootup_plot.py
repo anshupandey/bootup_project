@@ -2,7 +2,7 @@
 """
 Created on Sat Dec 28 22:01:40 2019
 
-@author: anshu
+@author: Anshu Pandey anshu@bootup.ai
 """
 
 import matplotlib.pyplot as plt
