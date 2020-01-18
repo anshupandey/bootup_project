@@ -102,5 +102,5 @@ def generate_polarplot(df,dictionary=dictionary):
     for bar,ang,text,loc,fac in zip(bars,rot,texts,dist,fact):
       plt.gca().text(bar.get_x() + bar.get_width()/2, md+loc*(6.28/N), str(int(bar.get_height()))+"/30",ha='center', color='b', fontsize=22,rotation=ang)
       plt.gca().text(bar.get_x() + bar.get_width()*fac, md+2+loc*(2*6.28/N), text,ha='center', color='black', fontsize=15,rotation=ang)
-
+    plt.savefig("Final_Graphs/polarplot1.jpg")
     plt.show()
