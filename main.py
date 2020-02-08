@@ -9,7 +9,7 @@ import pandas as pd
 import os
 from bootup_plot import generate_barplot
 
-def main(all_subjects=all_subjects):
+def main(all_subjects):
     domains=['Python Programming', 'Data Science', 'Machine Learning',"Deep Learning", "NLP"]
 
     all_headers = ['basic_python', 'advance_python', 'basic_ds', 'advance_ds', 'basic_ml', 'advance_ml', 'deep_learning', 'natural_language_processing', 'big_data_analytics', 'r_prog']
