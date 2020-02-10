@@ -97,4 +97,4 @@ def main(all_subjects):
     print("Polar Plot ")
     import bootup_plot
     df3 = df[current_headers]
-    bootup_plot.generate_polarplot(df)
+    bootup_plot.generate_polarplot(df3)
