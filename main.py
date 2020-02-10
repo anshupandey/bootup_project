@@ -44,7 +44,7 @@ def main(all_subjects):
     df2.to_excel("Final_Report.xlsx")
     #downloading the final report
     from google.colab import files
-    #files.download("Final_Report.xlsx")
+    files.download("Final_Report.xlsx")
     
     
     print("\n\n********************\n")
