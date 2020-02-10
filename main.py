@@ -15,7 +15,7 @@ def main(all_subjects):
     all_headers = ['basic_python', 'advance_python', 'basic_ds', 'advance_ds', 'basic_ml', 'advance_ml', 'deep_learning', 'natural_language_processing', 'big_data_analytics', 'r_prog']
     current_subjects = [i for i in all_subjects if i!='0']
     current_headers = [all_headers[i] for i in range(len(all_headers)) if all_subjects[i]!='0']
-    
+    print(current_headers)
     print("Processing Visualization for Current Subjects - ")
     for i in current_subjects: print(i)
     
@@ -44,7 +44,7 @@ def main(all_subjects):
     df2.to_excel("Final_Report.xlsx")
     #downloading the final report
     from google.colab import files
-    files.download("Final_Report.xlsx")
+    #files.download("Final_Report.xlsx")
     
     
     print("\n\n********************\n")
@@ -56,15 +56,16 @@ def main(all_subjects):
     basic_names = []
     advance_names = []
     
-    for bn in ['python','ds','ml']:
+    for bn in ['basic_python','basic_ds','basic_ml']:
         if bn in current_headers:
-            basic_names.append('basic_'+bn)
-            advance_names.append('advance_'+bn)
+            basic_names.append(bn)
     
-    for bn in current_headers:
-        if 'basic' not in bn and 'advance' not in bn:
+    for bn in ['advance_python','advance_ds','advance_ml','deep_learning', 'natural_language_processing', 'big_data_analytics', 'r_prog']:
+        if bn in current_headers:
             advance_names.append(bn)
     
+    print(basic_names)
+    print(advance_names)
     
     for i in range(df.shape[0]):
       cdata = df.iloc[i,:]
@@ -74,6 +75,7 @@ def main(all_subjects):
       for i in range(len(advance_data)-len(basic_data)):
         basic_data.append(0)
       os.mkdir("Employee_graphs//"+name)
+      
       generate_barplot(basic_score=basic_data,advance_score=advance_data,name=name,domains=domains)
     
     
@@ -94,4 +96,5 @@ def main(all_subjects):
     ###########################
     print("Polar Plot ")
     import bootup_plot
+    df3 = df[current_headers]
     bootup_plot.generate_polarplot(df)
