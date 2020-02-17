@@ -21,6 +21,8 @@ def main(all_subjects):
     
     
     df = pd.read_excel(current_subjects[0]) # taking name and email of participants from first file
+    if 'full name' not in list(df.columns):
+        df['Full Name'] = df['Email address']
     df = df[['Email address','Full Name']]
     for file_name,head in zip(current_subjects,current_headers) :
       new_file = pd.read_excel(file_name)
