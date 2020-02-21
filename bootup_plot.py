@@ -44,9 +44,9 @@ def generate_barplot(basic_score,advance_score,overall=False,name=None,domains=[
         spine.set_visible(False)
     # direct label each bar with Y axis values
     for bar in bars[:-1]:
-        plt.gca().text(bar.get_x() + bar.get_width()/2, bar.get_height()-1, str(int(bar.get_height())),ha='center', color='w', fontsize=22)
+        plt.gca().text(bar.get_x() + bar.get_width()/2, bar.get_height()-2, str(int(bar.get_height())),ha='center', color='w', fontsize=22)
     for bar,eb in zip(bars2,bars):
-        plt.gca().text(bar.get_x() + bar.get_width()/2, bar.get_height()-1+eb.get_height(), str(int(bar.get_height())),ha='center', color='w', fontsize=22)
+        plt.gca().text(bar.get_x() + bar.get_width()/2, bar.get_height()-2+eb.get_height(), str(int(bar.get_height())),ha='center', color='w', fontsize=22)
     plt.legend(["Basic","Advance"])
     if overall:
         plt.savefig("Final_Graphs/barplot1.jpg")
